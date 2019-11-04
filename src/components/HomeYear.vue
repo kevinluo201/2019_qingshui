@@ -62,7 +62,22 @@ export default {
   position: absolute;
   height: 0px;
   @include transition(all 1s ease-out);
-  @include transition(left 3s ease-out);
+  @include transition(left 1s ease-out);
+
+  // 進場動畫
+  animation-name: lineGrow;
+  animation-duration: 1s;
+  animation-delay: 3500ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes lineGrow {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 250px;
+  }
 }
 
 .container {
@@ -86,9 +101,25 @@ export default {
   @include transition(transform 1s ease-out);
   transform-origin: top right;
   transform: scale(1);
+  // 進場動畫
+  animation-name: titleFadeIn;
+  animation-duration: 1s;
+  animation-delay: 4500ms;
+  animation-fill-mode: forwards;
   h3 {
     font-size: 1rem;
     margin: 0;
+  }
+}
+
+@keyframes titleFadeIn {
+  from {
+    opacity: 0%;
+    top: -50px;
+  }
+  to {
+    opacity: 100%;
+    top: 0px;
   }
 }
 
@@ -120,18 +151,6 @@ export default {
   }
 }
 
-.home-year.mounted {
-  height: 250px;
-  @include transition(all 1s ease-out 3s);
-  .title {
-    opacity: 1;
-    top: 0px;
-    @include transition(all 1s ease-out 5s);
-    // h3 {
-    // }
-  }
-}
-
 .home-year.hovered {
   height: 273px;
   @include transition(all 1s ease-out);
@@ -147,7 +166,7 @@ export default {
 .home-year.active {
   .intro {
     width: 312px;
-    @include transition(width 3s ease-out);
+    @include transition(width 1s ease-out);
   }
 }
 </style>
