@@ -108,11 +108,11 @@ export default {
 
 @include keyframes(titleFadeIn) {
   from {
-    opacity: 0%;
+    opacity: 0;
     top: -30px;
   }
   to {
-    opacity: 100%;
+    opacity: 1;
     top: 0px;
   }
 }
