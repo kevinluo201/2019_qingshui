@@ -2,7 +2,7 @@
   <div class="home-year" :class="{ hovered: (isHovered && !isActive), active: isActive }" v-bind:style="{ left: leftPosition }">
     <div class="container">
       <div class="title" 
-        @click="isActive = !isActive"
+        @click="$emit('yearSelect', year)"
         @mouseenter="isHovered = true"
         @mouseleave="isHovered = false"
       >
@@ -15,7 +15,7 @@
         </h3>
       </div>
       <div class="intro">
-        <img src="~@/assets/icon-hp-esc.svg" alt="close" class="close" @click="isActive = false">
+        <img src="~@/assets/icon-hp-esc.svg" alt="close" class="close" @click="$emit('yearSelect', null)">
         <article>
           {{ year.article }}
         </article>
@@ -29,13 +29,15 @@ export default {
   props: ['yearSelected', 'year'],
   data() {
     return {
-      isActive: false,
       isHovered: false
     }
   },
   computed: {
+    isActive() {
+      return this.year === this.yearSelected
+    },
     leftPosition() {
-      return `${this.year.left}%`
+      return `calc(${this.year.left})`
     }
   }
 }
@@ -47,6 +49,7 @@ export default {
   position: absolute;
   height: 250px;
   @include transition(height 0.2s ease);
+  @include transition(left 3s ease);
 }
 
 .container {
@@ -112,6 +115,7 @@ export default {
 .home-year.active {
   .intro {
     width: 312px;
+    @include transition(width 3s ease);
   }
 }
 </style>
