@@ -1,7 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="~@/assets/Disk-1.5s-50px.gif">
-    <p>Loading...</p>
+
   </div>
 </template>
 
