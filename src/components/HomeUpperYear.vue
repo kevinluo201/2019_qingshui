@@ -8,6 +8,9 @@
       >
         <h3 class="first-title">
           <div class="word" v-for="(c, index) in year.title" :key="index">{{ c }}</div>
+          <div>
+            <img src="~@/assets/icon-hp-go_to_another_page.svg" alt="link">
+          </div>
         </h3>
 
         <h3 class="sub-title">
@@ -49,8 +52,8 @@ export default {
 
 <style lang="scss" scoped>
 .home-year {
-  margin-top: 8px;
   position: absolute;
+  bottom: 8px;
   height: 0px;
   @include transition(all 1s ease-out);
   @include transition(left 1s ease-out);
@@ -81,7 +84,7 @@ export default {
 .title {
   position: absolute;
   left: -28px;
-  top: -30px;
+  bottom: -30px;
   height: 100%;
   opacity: 0;
   display: flex;
@@ -90,7 +93,7 @@ export default {
   align-items: center;
   cursor: pointer;
   @include transition(transform 1s ease-out);
-  transform-origin: top right;
+  transform-origin: bottom right;
   transform: scale(1);
 
   // 進場動畫
@@ -101,17 +104,23 @@ export default {
   h3 {
     font-size: 1rem;
     margin: 0;
+    color: $color-2;
+
+    img {
+      width: 15px;
+      height: 15px;
+    }
   }
 }
 
 @include keyframes(titleFadeIn) {
   from {
     opacity: 0;
-    top: -30px;
+    bottom: -30px;
   }
   to {
     opacity: 1;
-    top: 0px;
+    bottom: 0px;
   }
 }
 
@@ -138,7 +147,7 @@ export default {
     background: $color-1;
     color: black;
     line-height: 1.5;
-    padding: 25px 30px 15px 12px;
+    padding: 15px 30px 15px 12px;
     text-align: left;
   }
 }
