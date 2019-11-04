@@ -1,0 +1,77 @@
+$app-padding: 20px;
+$color-1: rgb(254, 249, 188);
+
+
+$max_width: 800px;
+
+@mixin  max-width-1280-and-centered {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@mixin transition($property) {
+  -webkit-transition: $property;
+     -moz-transition: $property;
+      -ms-transition: $property;
+       -o-transition: $property;
+          transition: $property;
+}
+
+@mixin box-sizing($property) {
+  -webkit-box-sizing: $property;
+     -moz-box-sizing: $property;
+          box-sizing: $property;
+}
+
+@mixin placeholder-color($color) {
+  &::-webkit-input-placeholder { /* WebKit browsers */
+      color: $color;
+  }
+  &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+      color: $color;
+  }
+  &::-moz-placeholder { /* Mozilla Firefox 19+ */
+      color: $color;
+  }
+  &:-ms-input-placeholder { /* Internet Explorer 10+ */
+      color: $color;
+  }
+}
+
+@mixin placeholder-fontsize($size) {
+  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    font-size: $size;
+  }
+  &::-moz-placeholder { /* Firefox 19+ */
+    font-size: $size;
+  }
+  &:-ms-input-placeholder { /* IE 10+ */
+    font-size: $size;
+  }
+  &:-moz-placeholder { /* Firefox 18- */
+    font-size: $size;
+  }
+}
+
+@mixin border-radius($amount) {
+  -webkit-border-radius: $amount;
+
+  /* Firefox 1-3.6 */
+  -moz-border-radius: $amount;
+
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-radius: $amount;
+}
+
+@mixin Xcentered() {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -23,7 +23,7 @@
 export default {
   data() {
     return {
-      isLoading: true
+      isLoading: false
     }
   }
 }
@@ -36,6 +36,10 @@ body {
   font-size: 16px;
   background-image: url('~@/assets/img-hp-bgi.png');
   background-size: cover;
+
+  * {
+    box-sizing: border-box;
+  }
 }
 
 #app {
@@ -45,7 +49,7 @@ body {
   text-align: center;
   color: white;
   line-height: 1.3;
-  padding: 30px;
+  padding: $app-padding;
 }
 </style>
 
@@ -64,7 +68,7 @@ body {
   }
   h1 {
     font-size: 1.875rem;
-    color: rgb(254, 249, 188);
+    color: $color-1;
     margin: 0;
   }
   h2 {
