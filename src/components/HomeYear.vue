@@ -1,5 +1,5 @@
 <template>
-  <div class="home-year" :class="{ hovered: (isHovered && !isActive), active: isActive }" v-bind:style="{ left: leftPosition }">
+  <div class="home-year" :class="classObj" v-bind:style="{ left: leftPosition }">
     <div class="container">
       <div class="title" 
         @click="$emit('yearSelect', year)"
@@ -27,8 +27,14 @@
 <script>
 export default {
   props: ['yearSelected', 'year'],
+  mounted() {
+    setTimeout(() => {
+      this.isMounted = true
+    }, 100)
+  },
   data() {
     return {
+      isMounted: false,
       isHovered: false
     }
   },
@@ -38,6 +44,13 @@ export default {
     },
     leftPosition() {
       return `calc(${this.year.left})`
+    },
+    classObj() {
+      return {
+        mounted: this.isMounted,
+        hovered: (this.isHovered && !this.isActive), 
+        active: this.isActive
+      }
     }
   }
 }
@@ -47,9 +60,9 @@ export default {
 .home-year {
   margin-top: 8px;
   position: absolute;
-  height: 250px;
-  @include transition(height 1s ease);
-  @include transition(left 3s ease);
+  height: 0px;
+  @include transition(all 1s ease-out);
+  @include transition(left 3s ease-out);
 }
 
 .container {
@@ -62,13 +75,15 @@ export default {
 .title {
   position: absolute;
   left: -28px;
+  opacity: 0;
+  top: -30px;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  @include transition(transform 1s ease);
+  @include transition(transform 1s ease-out);
   transform-origin: top right;
   transform: scale(1);
   h3 {
@@ -81,7 +96,7 @@ export default {
   padding-left: 12px;
   overflow: hidden;
   width: 1px;
-  @include transition(width 0.5s ease);
+  @include transition(width 0.5s ease-out);
   height: 250px;
 
   img {
@@ -105,13 +120,25 @@ export default {
   }
 }
 
+.home-year.mounted {
+  height: 250px;
+  @include transition(all 1s ease-out 3s);
+  .title {
+    opacity: 1;
+    top: 0px;
+    @include transition(all 1s ease-out 5s);
+    // h3 {
+    // }
+  }
+}
+
 .home-year.hovered {
   height: 273px;
-  @include transition(height 1s ease);
+  @include transition(all 1s ease-out);
   .title {
     transform: scale(1.05);
     transform-origin: top right;
-    @include transition(transform 1s ease);
+    @include transition(transform 1s ease-out);
     // h3 {
     // }
   }
@@ -120,7 +147,7 @@ export default {
 .home-year.active {
   .intro {
     width: 312px;
-    @include transition(width 3s ease);
+    @include transition(width 3s ease-out);
   }
 }
 </style>
