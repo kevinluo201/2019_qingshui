@@ -27,14 +27,8 @@
 <script>
 export default {
   props: ['yearSelected', 'year'],
-  mounted() {
-    setTimeout(() => {
-      this.isMounted = true
-    }, 100)
-  },
   data() {
     return {
-      isMounted: false,
       isHovered: false
     }
   },
@@ -47,7 +41,6 @@ export default {
     },
     classObj() {
       return {
-        mounted: this.isMounted,
         hovered: (this.isHovered && !this.isActive), 
         active: this.isActive
       }
@@ -90,9 +83,9 @@ export default {
 .title {
   position: absolute;
   left: -28px;
-  opacity: 0;
   top: -30px;
   height: 100%;
+  opacity: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -101,6 +94,7 @@ export default {
   @include transition(transform 1s ease-out);
   transform-origin: top right;
   transform: scale(1);
+
   // 進場動畫
   animation-name: titleFadeIn;
   animation-duration: 1s;
@@ -112,10 +106,10 @@ export default {
   }
 }
 
-@keyframes titleFadeIn {
+@include keyframes(titleFadeIn) {
   from {
     opacity: 0%;
-    top: -50px;
+    top: -30px;
   }
   to {
     opacity: 100%;
@@ -158,8 +152,6 @@ export default {
     transform: scale(1.05);
     transform-origin: top right;
     @include transition(transform 1s ease-out);
-    // h3 {
-    // }
   }
 }
 
