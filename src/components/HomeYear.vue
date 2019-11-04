@@ -48,7 +48,7 @@ export default {
   margin-top: 8px;
   position: absolute;
   height: 250px;
-  @include transition(height 0.2s ease);
+  @include transition(height 1s ease);
   @include transition(left 3s ease);
 }
 
@@ -68,10 +68,12 @@ export default {
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  @include transition(transform 1s ease);
+  transform-origin: top right;
+  transform: scale(1);
   h3 {
     font-size: 1rem;
     margin: 0;
-    @include transition(font-size 0.2s ease);
   }
 }
 
@@ -105,10 +107,13 @@ export default {
 
 .home-year.hovered {
   height: 273px;
+  @include transition(height 1s ease);
   .title {
-    h3 {
-      font-size: 1.125rem;
-    }
+    transform: scale(1.05);
+    transform-origin: top right;
+    @include transition(transform 1s ease);
+    // h3 {
+    // }
   }
 }
 
