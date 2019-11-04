@@ -30,6 +30,14 @@ export default {
 </script>
 
 <style lang="scss">
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  background-image: url('~@/assets/img-hp-bgi.png');
+  background-size: cover;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
