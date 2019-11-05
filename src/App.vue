@@ -8,9 +8,10 @@
       <nav>
         <router-link :to="{name: 'classics'}">經典重現</router-link>
         <span class="divider">|</span>
-        <a href="">關於</a>
+        <span class="about" @click="showAbout = true">關於</span>
       </nav>
     </header>
+    <AppAbout :showAbout="showAbout" @closeAbout="showAbout = false" />
     <div id="loading" v-if="isLoading">
       <img alt="Vue logo" src="@/assets/Disk-1.5s-50px.gif">
       <p>Loading...</p>
@@ -20,10 +21,14 @@
 </template>
 
 <script>
+import AppAbout from "@/components/AppAbout"
+
 export default {
+  components: { AppAbout },
   data() {
     return {
-      isLoading: false
+      isLoading: false,
+      showAbout: false
     }
   }
 }
@@ -104,5 +109,9 @@ body {
   p {
     color: rgb(254, 249, 188);
   }
+}
+
+.about {
+   cursor: pointer;
 }
 </style>
