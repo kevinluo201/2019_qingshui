@@ -30,9 +30,16 @@ export default {
 </script>
 
 <style lang="scss">
+html,body
+{
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden; 
+}
+
 body {
-  margin: 0;
-  padding: 0;
   font-size: 16px;
   background-image: url('~@/assets/img-hp-bgi.png');
   background-size: cover;

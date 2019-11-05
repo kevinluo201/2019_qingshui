@@ -19,7 +19,9 @@
       </div>
       <div class="intro">
         <img src="~@/assets/icon-hp-esc.svg" alt="close" class="close" @click="$emit('yearSelect', null)">
-        <article v-html="year.article"></article>
+         <div class="article">
+          <article v-html="year.article"></article>
+        </div>
       </div>
     </div>
   </div>
@@ -127,6 +129,7 @@ export default {
 .intro {
   padding-left: 12px;
   overflow: hidden;
+  position: relative;
   width: 1px;
   @include transition(width 0.5s ease-out);
   height: 250px;
@@ -140,15 +143,19 @@ export default {
     cursor: pointer;
   }
 
-  article {
+  .article {
     width: 300px;
     height: 100%;
-    overflow-y: scroll;
+    padding: 10px;
     background: $color-1;
-    color: black;
-    line-height: 1.5;
-    padding: 15px 30px 15px 12px;
-    text-align: left;
+
+    article {
+      height: 100%;
+      color: black;
+      line-height: 1.5;
+      text-align: left;
+      overflow-y: scroll;
+    }
   }
 }
 
@@ -157,7 +164,7 @@ export default {
   @include transition(all 1s ease-out);
   .title {
     transform: scale(1.05);
-    transform-origin: top right;
+    transform-origin: bottom right;
     @include transition(transform 1s ease-out);
   }
 }
