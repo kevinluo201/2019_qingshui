@@ -69,6 +69,7 @@ body {
 #app-header {
   display: flex;
   justify-content: space-between;
+  z-index: 100;
   * {
     color: white;
   }

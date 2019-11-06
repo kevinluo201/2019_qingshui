@@ -8,9 +8,6 @@
       >
         <h3 class="first-title">
           <div class="word" v-for="(c, index) in year.title" :key="index">{{ c }}</div>
-          <div>
-            <img src="~@/assets/icon-hp-go_to_another_page.svg" alt="link">
-          </div>
         </h3>
 
         <h3 class="sub-title">
@@ -21,6 +18,7 @@
         <img src="~@/assets/icon-hp-esc.svg" alt="close" class="close" @click="$emit('yearSelect', null)">
          <div class="article">
           <article v-html="year.article"></article>
+          <router-link class="classics-link" :to="{ name: 'classics' }">前往經典重現</router-link>
         </div>
       </div>
     </div>
@@ -147,15 +145,25 @@ export default {
     width: 300px;
     height: 100%;
     padding: 10px;
-    background: $color-1;
+    background: #e48030;
 
     article {
-      height: 100%;
-      color: black;
+      height: 190px;
+      color: white;
       line-height: 1.5;
       text-align: left;
       overflow-y: scroll;
     }
+  }
+
+  .classics-link {
+    @include flex-center;
+    width: 100%;
+    height: 30px;
+    border: solid white 1px;
+    color: white;
+    text-decoration: none;
+    margin-top: 10px;
   }
 }
 

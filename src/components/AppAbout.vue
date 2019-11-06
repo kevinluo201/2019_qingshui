@@ -50,7 +50,7 @@ export default {
   background: rgba(35, 35, 35, 0);
   @include transition(background-color 0.5s);
   &.shown {
-    z-index: 100;
+    z-index: 200;
     background: rgba(35, 35, 35, 0.8);
   }
 }
@@ -61,7 +61,6 @@ aside {
   overflow-y: scroll;
   background: rgba(255, 255, 255, 0.8);
   position: absolute;
-  z-index: 100;
   top: 0;
   right: -375px;
   color: black;
