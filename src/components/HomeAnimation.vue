@@ -110,6 +110,6 @@ $gap: 1;
   top: 28.89%;
   width: 30%;
   z-index: 20;
-  @include ani(fadeLeftIn8,  #{$gap * 14}s);
+  @include ani(fadeLeftIn8,  #{$gap * 16}s);
 }
 </style>
