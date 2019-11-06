@@ -1,36 +1,43 @@
 <template>
   <div class="home">
-    <HomeAnimation v-if="isAnimating" />
-    <div class="upper">
-      <HomeUpperYear 
-        :yearSelected="yearSelected" 
-        :year="year96"
-        @yearSelect="yearSelect"
-      />
-    </div>
-    <HomeBackbone />
-    <div class="lower">
-      <HomeYear 
-        :yearSelected="yearSelected" 
-        :year="year91"
-        @yearSelect="yearSelect"
-      />
-      <HomeYear 
-        :yearSelected="yearSelected" 
-        :year="year92"
-        @yearSelect="yearSelect"
-      />
-      <HomeYear 
-        :yearSelected="yearSelected" 
-        :year="year97"
-        @yearSelect="yearSelect"
-      />
-      <HomeYear 
-        :yearSelected="yearSelected" 
-        :year="yearNow"
-        @yearSelect="yearSelect"
-      />
-    </div>
+    <transition name="fade">
+      <HomeAnimation v-if="isAnimating" @animationEnd="showContent" />
+    </transition>
+
+    <transition name="fade">
+      <div class="content" v-if="showingContent">
+        <div class="upper">
+          <HomeUpperYear 
+            :yearSelected="yearSelected" 
+            :year="year96"
+            @yearSelect="yearSelect"
+          />
+        </div>
+        <HomeBackbone />
+        <div class="lower">
+          <HomeYear 
+            :yearSelected="yearSelected" 
+            :year="year91"
+            @yearSelect="yearSelect"
+          />
+          <HomeYear 
+            :yearSelected="yearSelected" 
+            :year="year92"
+            @yearSelect="yearSelect"
+          />
+          <HomeYear 
+            :yearSelected="yearSelected" 
+            :year="year97"
+            @yearSelect="yearSelect"
+          />
+          <HomeYear 
+            :yearSelected="yearSelected" 
+            :year="yearNow"
+            @yearSelect="yearSelect"
+          />
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -46,6 +53,7 @@ export default {
   data() {
     return {
       isAnimating: true,
+      showingContent: false,
       yearSelected: null,
       year91: {
         title: '1992以前',
@@ -80,6 +88,14 @@ export default {
     }
   },
   methods: {
+    showContent() {
+      setTimeout(() => {
+        this.showingContent = true;
+      }, 3000);
+      setTimeout(() => {
+        this.isAnimating = false;
+      }, 6500);
+    },
     yearSelect(e) {
       // 還原預設position
       this.year91.left = '2.5%'
@@ -106,6 +122,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 1s;
+  }
   .home {
     position: relative;
     display: flex;
@@ -114,6 +133,19 @@ export default {
     align-items: center;
     height: 80vh;
   }
+
+  .content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 25;
+    background: rgba(0, 0, 0, 0.3);
+    padding: $app-padding;
+    padding-top: 60px;
+  }
+
   .upper {
     position:relative;
     width: 100%;

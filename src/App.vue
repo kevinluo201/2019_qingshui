@@ -63,6 +63,13 @@ body {
   line-height: 1.3;
   padding: $app-padding;
 }
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 </style>
 
 <style lang="scss" scoped>
@@ -70,6 +77,7 @@ body {
   display: flex;
   justify-content: space-between;
   z-index: 100;
+  position: relative;
   * {
     color: white;
   }
