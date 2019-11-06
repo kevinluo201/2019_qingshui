@@ -164,6 +164,11 @@ export default {
     color: white;
     text-decoration: none;
     margin-top: 10px;
+    @include transition(all 0.3s ease);
+    &:hover {
+      color: #e48030;
+      background-color: white;
+    }
   }
 }
 

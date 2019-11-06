@@ -47,11 +47,12 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-  background: rgba(35, 35, 35, 0);
-  @include transition(background-color 0.5s);
+  background: rgba(35, 35, 35, 0.8);
+  opacity: 0;
+  @include transition(all 300ms ease-out);
   &.shown {
     z-index: 200;
-    background: rgba(35, 35, 35, 0.8);
+    opacity: 1;
   }
 }
 
@@ -65,10 +66,10 @@ aside {
   right: -375px;
   color: black;
   padding: 27px 46px 25px 25px;
-  @include transition(right 0.5s ease-out);
+  transition: transform 300ms ease-out;
 
   &.shown {
-    right: 0;
+    transform: translateX(-100%);
   }
 }
 
