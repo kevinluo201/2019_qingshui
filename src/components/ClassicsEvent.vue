@@ -34,10 +34,7 @@ export default {
   },
   computed: {
     photos() {
-      return this.event.photos.map((photo) => {
-        console.log(photo)
-        return require(`@/assets/photos/${photo}.jpg`)
-      })
+      return this.event.photos.map(photo => require(`@/assets/photos/${photo}.jpg`))
     }
   }
 }

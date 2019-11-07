@@ -27,6 +27,15 @@
         <div class="swiper-scrollbar"   slot="scrollbar"></div>
       </swiper>
     </div>
+    <input
+      class="event-range"
+      type="range"
+      v-model="eventNow"
+      step="1"
+      min="0"
+      :max="events.length - 1"
+      @input="rangeInputed"
+    />
   </div>
 </template>
 
@@ -63,7 +72,13 @@ export default {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
         }
-      }
+      },
+      eventNow: 0
+    }
+  },
+  methods: {
+    rangeInputed() {
+      this.swiper.slideTo(this.eventNow, 500, 'ease')
     }
   },
   computed: {
@@ -73,6 +88,9 @@ export default {
     },
     events() {
       return Events[this.categorySelected]
+    },
+    swiper() {
+      return this.$refs.eventsSwiper.swiper
     }
   }
 }
@@ -111,5 +129,10 @@ nav {
     width: 15px;
     height: 24px;
   }
+}
+
+.event-range {
+  margin-top: 44px;
+  width: calc((100vw - #{$app-padding} * 2) / 3);
 }
 </style>
