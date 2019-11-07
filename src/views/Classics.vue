@@ -11,13 +11,37 @@
         {{ cat }}
       </router-link>
     </nav>
+    <div class="content">
+      <swiper :options="swiperOption" ref="eventsSwiper">
+        <!-- slides -->
+        <swiper-slide v-for="event in events" :key="event.name">
+          <ClassicsEvent :event="event" />
+        </swiper-slide>
+        <!-- Optional controls -->
+        <div class="swiper-button-prev" slot="button-prev">
+          <img src="@/assets/icon-works-last_event.svg" alt="previews">
+        </div>
+        <div class="swiper-button-next" slot="button-next">
+          <img src="@/assets/icon-works-next_event.svg" alt="previews">
+        </div>
+        <div class="swiper-scrollbar"   slot="scrollbar"></div>
+      </swiper>
+    </div>
   </div>
 </template>
 
 <script>
 import Events from '@/assets/events.json'
+import 'swiper/dist/css/swiper.css'
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import ClassicsEvent from '@/components/ClassicsEvent'
 
 export default {
+  components: {
+    swiper,
+    swiperSlide,
+    ClassicsEvent
+  },
   data() {
     return {
       categories: [
@@ -27,7 +51,19 @@ export default {
         '郭芝苑作品音樂會',
         '簡名彥與名弦四重奏',
         '更多'
-      ]
+      ],
+      swiperOption: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        }
+      }
     }
   },
   computed: {
@@ -45,6 +81,7 @@ export default {
 <style lang="scss" scoped>
 nav {
   margin-top: 29px;
+  margin-bottom: 56px;
   display: flex;
 
   .cat-link {
@@ -57,6 +94,22 @@ nav {
     &.active, &:hover {
       border-bottom: 1px $color-1 solid;
     }
+  }
+}
+
+.content {
+  margin-left: -$app-padding;
+  margin-right: -$app-padding;
+}
+
+.swiper-button-prev, .swiper-button-next {
+  width: 50px;
+  height: 50px;
+  @include flex-center();
+  background: rgba(0, 0, 0, 0.5);
+  img {
+    width: 15px;
+    height: 24px;
   }
 }
 </style>
