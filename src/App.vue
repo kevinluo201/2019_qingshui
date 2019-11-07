@@ -6,7 +6,7 @@
         <h2>臺中地方文化故事</h2>
       </div>
       <nav>
-        <router-link :to="{name: 'classics'}">經典重現</router-link>
+        <router-link :to="{name: 'classics', params: { category: '1996 牛罵頭音樂節'}}">經典重現</router-link>
         <span class="divider">|</span>
         <span class="about" @click="showAbout = true">關於</span>
       </nav>

@@ -18,7 +18,7 @@
         <img src="~@/assets/icon-hp-esc.svg" alt="close" class="close" @click="$emit('yearSelect', null)">
          <div class="article">
           <article v-html="year.article"></article>
-          <router-link class="classics-link" :to="{ name: 'classics' }">前往經典重現</router-link>
+          <router-link class="classics-link" :to="{ name: 'classics', params: { category: '1996 牛罵頭音樂節'} }">前往經典重現</router-link>
         </div>
       </div>
     </div>
