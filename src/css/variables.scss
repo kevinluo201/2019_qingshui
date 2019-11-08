@@ -76,6 +76,15 @@ $max_width: 800px;
   align-items: center;
 }
 
+@mixin absolute-fill($z: 1) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: $z;
+}
+
 @mixin keyframes($name) {
   @-webkit-keyframes #{$name} {
     @content; 

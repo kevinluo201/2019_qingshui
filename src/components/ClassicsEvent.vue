@@ -1,14 +1,25 @@
 <template>
-  <div class="classics-event">
+  <div class="classics-event" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
+    <div class="mask" :class="{ active: isHovered }">
+      <h3>
+        {{ event.date }}<br>
+        {{ event.title }}
+      </h3>
+      <nav>
+        <div class="nav-arrow nav-arrow-prev" :class="`swiper-${index}-prev`">
+          <img src="@/assets/icon-works-last_img-normal.svg" alt="">
+        </div>
+
+        <div class="nav-arrow nav-arrow-next" :class="`swiper-${index}-next`">
+          <img src="@/assets/icon-works-next_img-normal.svg" alt="">
+        </div>
+      </nav>
+    </div>
     <swiper :options="swiperOption" ref="mySwiper">
       <!-- slides -->
       <swiper-slide v-for="photo in photos" :key="photo">
         <img :src="photo" alt="" class="center-cropped" />
       </swiper-slide>
-      <!-- Optional controls -->
-      <div class="swiper-pagination"  slot="pagination"></div>
-      <div class="swiper-button-prev" slot="button-prev"></div>
-      <div class="swiper-button-next" slot="button-next"></div>
     </swiper>
   </div>
 </template>
@@ -19,11 +30,15 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
 export default {
   components: { swiper, swiperSlide },
-  props: ['event'],
+  props: ['event', 'index'],
   data() {
     return {
+      isHovered: false,
       swiperOption: {
-
+        navigation: {
+          nextEl: `.swiper-${this.index}-button-next`,
+          prevEl: `.swiper-${this.index}-button-prev`
+        }
       }
     }
   },
@@ -41,11 +56,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.classics {
+.classics-event {
   position: relative;
-  img {
-    width: 100%;
-  }
   .center-cropped {
     object-fit: cover;
     object-position: center; /* Center the image within the element */
@@ -53,5 +65,36 @@ export default {
     width: 100%;
   }
 }
+
+.mask {
+  @include absolute-fill();
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  opacity: 0;
+  z-index: 0;
+  @include transition(opacity 0.5s ease-out);
+  &.active {
+    opacity: 1;
+    z-index: 100;
+  }
+  display: flex;
+  flex-direction: column;
+  padding: 19px 14px;
+  h3 {
+    font-size: 1rem;
+    color: white;
+    text-align: left;
+    margin: 0;
+  }
+
+  nav {
+    align-self: center;
+    .nav-arrow-prev {
+      
+    }
+  }
+}
+
+
 
 </style>

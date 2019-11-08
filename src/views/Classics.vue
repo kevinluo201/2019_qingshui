@@ -14,8 +14,8 @@
     <div class="content">
       <swiper :options="swiperOption" ref="eventsSwiper">
         <!-- slides -->
-        <swiper-slide v-for="event in events" :key="event.name">
-          <ClassicsEvent :event="event" />
+        <swiper-slide v-for="(event, i) in events" :key="event.name">
+          <ClassicsEvent :event="event" :index="i" />
         </swiper-slide>
         <!-- Optional controls -->
         <div class="swiper-button-prev" slot="button-prev">
@@ -101,7 +101,7 @@ nav {
   margin-top: 29px;
   margin-bottom: 56px;
   display: flex;
-
+  
   .cat-link {
     color: $color-1;
     font-size: 1rem;
