@@ -6,19 +6,52 @@
         <h2>臺中地方文化故事</h2>
       </div>
       <nav>
-        <router-link :to="{name: 'classics'}">經典重現</router-link> |
-        <a href="">關於</a>
+        <router-link :to="{name: 'classics', params: { category: '1996 牛罵頭音樂節'}}">經典重現</router-link>
+        <span class="divider">|</span>
+        <span class="about" @click="showAbout = true">關於</span>
       </nav>
     </header>
-    <router-view/>
+    <AppAbout :showAbout="showAbout" @closeAbout="showAbout = false" />
+    <div id="loading" v-if="isLoading">
+      <img alt="Vue logo" src="@/assets/Disk-1.5s-50px.gif">
+      <p>Loading...</p>
+    </div>
+    <router-view v-else />
   </div>
 </template>
 
+<script>
+import AppAbout from "@/components/AppAbout"
+
+export default {
+  components: { AppAbout },
+  data() {
+    return {
+      isLoading: false,
+      showAbout: false
+    }
+  }
+}
+</script>
+
 <style lang="scss">
+html,body
+{
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden; 
+}
+
 body {
-  margin: 0;
-  padding: 0;
   font-size: 16px;
+  background-image: url('~@/assets/img-hp-bgi.png');
+  background-size: cover;
+
+  * {
+    box-sizing: border-box;
+  }
 }
 
 #app {
@@ -27,15 +60,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: white;
-  background-image: url('./assets/img-hp-bgi.png');
-  background-size: cover;
-  min-height: 100vh;
-  padding: 20px;
+  line-height: 1.3;
+  padding: $app-padding;
 }
 
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+</style>
+
+<style lang="scss" scoped>
 #app-header {
   display: flex;
   justify-content: space-between;
+  z-index: 100;
+  position: relative;
   * {
     color: white;
   }
@@ -46,29 +88,39 @@ body {
     text-align: left;
   }
   h1 {
-    color: rgb(254, 249, 188);
+    font-size: 1.875rem;
+    color: $color-1;
     margin: 0;
   }
   h2 {
-    font-size: 1.2rem;
-    margin-top: 0;
+    font-size: 1rem;
+    margin: 0;
   }
 
   nav {
     margin-top: 10px;
+    .divider {
+      margin: 0 10px;
+    }
   }
 }
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+#loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  img {
+    width: 30px;
+    height: 30px;
   }
+  p {
+    color: rgb(254, 249, 188);
+  }
+}
+
+.about {
+   cursor: pointer;
 }
 </style>
